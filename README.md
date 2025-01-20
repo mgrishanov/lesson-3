@@ -125,3 +125,14 @@ FROM s3(
 
 ![4.png](src%2Fimg%2F4.png)
 
+Считаю кол-во записей в таблице trips
+
+![5.png](src%2Fimg%2F5.png)
+
+Benchmark входит в обычную поставку вместе с clickhouse-client. Это не отдельный бинарник, а тот же clickhouse-client, только симлинк. С помощью него можно взять какую-нибудь ленту запросов или один запрос и устроить нагрузочное тестирование. Эти запросы будут непрерывно выполняться с использованием фиксированного количества соединений и выводить статистику.
+
+```
+clickhouse-benchmark --password=passwd2 --query="select count() from test.trips where payment_type = 1"
+```
+
+![6.png](src%2Fimg%2F6.png)
